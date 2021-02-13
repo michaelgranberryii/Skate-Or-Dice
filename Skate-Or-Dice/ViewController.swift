@@ -25,12 +25,9 @@ class ViewController: UIViewController {
         diceImageView4.layer.cornerRadius = 10
     }
     
+    // Roll dice
     @IBAction func rollButtonPressed(_ sender: UIButton) {
-        dice.rollDice()
-        diceImageView1.image = dice.diceImage[0]
-        diceImageView2.image = dice.diceImage[1]
-        diceImageView3.image = dice.diceImage[2]
-        diceImageView4.image = dice.diceImage[3]
+        updateImages()
     }
     
     // We are willing to become first responder to get shake motion
@@ -44,12 +41,17 @@ class ViewController: UIViewController {
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             print("Shake")
-            dice.rollDice()
-            diceImageView1.image = dice.diceImage[0]
-            diceImageView2.image = dice.diceImage[1]
-            diceImageView3.image = dice.diceImage[2]
-            diceImageView4.image = dice.diceImage[3]
+            updateImages()
         }
+    }
+    
+    // Update dice images
+    func updateImages() {
+        dice.rollDice()
+        diceImageView1.image = dice.diceImage[0]
+        diceImageView2.image = dice.diceImage[1]
+        diceImageView3.image = dice.diceImage[2]
+        diceImageView4.image = dice.diceImage[3]
     }
 }
 
